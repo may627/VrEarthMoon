@@ -27,9 +27,9 @@ public class Moon {
 
     private int vCount;
 
-    public Moon(MySurfaceView mySurfaceView, float r) {
+    public Moon(float r, MainActivity mainActivity) {
         initVertexData(r);
-        initShader(mySurfaceView);
+        initShader(mainActivity);
     }
 
     private void initVertexData(float r) {
@@ -103,9 +103,9 @@ public class Moon {
         mTexCoorBuffer.position(0);
     }
 
-    private void initShader(MySurfaceView mySurfaceView) {
-        mVertexShader = ShaderUtil.loadFromAssetsFile("vertexMoon.sh", mySurfaceView.getResources());
-        mFragShader = ShaderUtil.loadFromAssetsFile("fragMoon.sh", mySurfaceView.getResources());
+    private void initShader(MainActivity mainActivity) {
+        mVertexShader = ShaderUtil.loadFromAssetsFile("vertexMoon.sh", mainActivity.getResources());
+        mFragShader = ShaderUtil.loadFromAssetsFile("fragMoon.sh", mainActivity.getResources());
 
         mProgram = ShaderUtil.createProgram(mVertexShader, mFragShader);
         muMVPMatrixHandle = GLES20.glGetUniformLocation(mProgram, "uMVPMatrix");

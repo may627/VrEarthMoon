@@ -21,6 +21,8 @@ public class MatrixState {
 
     public static float[] lightLocation = new float[] {0, 0, 0};
     public static FloatBuffer lightPositionFB;
+    public static float[] mProjMatrix_pub = new float[16];
+
     static ByteBuffer llbbL = ByteBuffer.allocateDirect(3 * 4);
 
     public static void setLightLocation(float x, float y, float z) {
@@ -97,7 +99,20 @@ public class MatrixState {
          */
         Matrix.multiplyMM(mMVPMatrix, 0, mVMatrix, 0, currMatrix, 0);  // mMVPMatrix = mVMatrix * currMatrix; 注意矩阵相乘有方向
         Matrix.multiplyMM(mMVPMatrix, 0, mProjMatrix, 0, mMVPMatrix, 0);    // mMVPMatrix = mProjMatrix * mMVPMatrix;
+        //Matrix.multiplyMM(mMVPMatrix, 0, mProjMatrix_pub, 0, mMVPMatrix, 0);    // mMVPMatrix = mProjMatrix * mMVPMatrix;
         return mMVPMatrix;
+    }
+
+    public static float[] getmVMatrix() {
+        return mVMatrix;
+    }
+
+    public static void setmVMatrix(float[] m) {
+        mMVPMatrix = m;
+    }
+
+    public static void setProjMatrix(float[] m) {
+        mProjMatrix = m;
     }
 
     public static void setProjectFrustum(float left, float right,

@@ -30,9 +30,9 @@ public class Earth {
     private int vCount;
 
 
-    public Earth(MySurfaceView mySurfaceView, float r) {
+    public Earth(float r, MainActivity mainActivity) {
         initVertexData(r);
-        initShader(mySurfaceView);
+        initShader(mainActivity);
     }
 
     private void initVertexData(float r) {
@@ -95,9 +95,9 @@ public class Earth {
         mTexCoorBuffer.position(0);
     }
 
-    private void initShader(MySurfaceView mySurfaceView) {
-        mVertexShader = ShaderUtil.loadFromAssetsFile("vertexEarth.sh", mySurfaceView.getResources());
-        mFragShader = ShaderUtil.loadFromAssetsFile("fragEarth.sh", mySurfaceView.getResources());
+    private void initShader(MainActivity mainActivity) {
+        mVertexShader = ShaderUtil.loadFromAssetsFile("vertexEarth.sh", mainActivity.getResources());
+        mFragShader = ShaderUtil.loadFromAssetsFile("fragEarth.sh", mainActivity.getResources());
 
         mProgram = ShaderUtil.createProgram(mVertexShader, mFragShader);
         muMVPMatrixHandle = GLES20.glGetUniformLocation(mProgram, "uMVPMatrix");

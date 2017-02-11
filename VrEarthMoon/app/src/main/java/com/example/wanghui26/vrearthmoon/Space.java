@@ -23,13 +23,13 @@ public class Space {
 
     static final float UNIT_SIZE = 10f;
 
-    public Space(float scale, float yAngle, int vCount, MySurfaceView mySurfaceView) {
+    public Space(float scale, float yAngle, int vCount, MainActivity mainActivity) {
         this.scale = scale;
         this.yAngle = yAngle;
         this.vCount = vCount;
 
         initVertexData();
-        initShader(mySurfaceView);
+        initShader(mainActivity);
     }
 
     private void initVertexData() {
@@ -50,9 +50,9 @@ public class Space {
         mVertexBuffer.position(0);
     }
 
-    private void initShader(MySurfaceView mySurfaceView) {
-        mVertexShader = ShaderUtil.loadFromAssetsFile("vertexSpace.sh", mySurfaceView.getResources());
-        mFragShader = ShaderUtil.loadFromAssetsFile("fragSpace.sh", mySurfaceView.getResources());
+    private void initShader(MainActivity mainActivity) {
+        mVertexShader = ShaderUtil.loadFromAssetsFile("vertexSpace.sh", mainActivity.getResources());
+        mFragShader = ShaderUtil.loadFromAssetsFile("fragSpace.sh", mainActivity.getResources());
 
         mProgram = ShaderUtil.createProgram(mVertexShader, mFragShader);
         muMVPMatrixHandle = GLES20.glGetUniformLocation(mProgram, "uMVPMatrix");
